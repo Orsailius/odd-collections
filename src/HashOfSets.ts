@@ -1,4 +1,4 @@
-export default class HashOfLists<T,K>
+export default class HashOfSets<T,K>
 {       
     private map:Map<T,Set<K>> = new Map();
 

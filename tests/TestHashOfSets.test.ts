@@ -1,8 +1,8 @@
-import HashOfLists from '../src/HashOfLists';
+import HashOfSets from '../src/HashOfSets';
 
 describe("empty tests",()=>
 {
-  var hashlist:HashOfLists<number,string> = new HashOfLists();
+  var hashlist:HashOfSets<number,string> = new HashOfSets();
 
   test('key count is 0', () => {
       expect(hashlist.keyCount).toBe(0);
@@ -15,7 +15,7 @@ describe("empty tests",()=>
 
 describe("hashlist add(4,red)",()=>
 {
-  var hashlist:HashOfLists<number,string> = new HashOfLists();
+  var hashlist:HashOfSets<number,string> = new HashOfSets();
   hashlist.add(4,'red');
 
   test('key count is 1', () => {
@@ -37,7 +37,7 @@ describe("hashlist add(4,red)",()=>
 
 describe("hashlist add(4,red), add(4,green)",()=>
 {
-  var hashlist:HashOfLists<number,string> = new HashOfLists();
+  var hashlist:HashOfSets<number,string> = new HashOfSets();
   hashlist.add(4,'red');
   hashlist.add(4,'green');
 
@@ -60,7 +60,7 @@ describe("hashlist add(4,red), add(4,green)",()=>
 
 describe("hashlist add(4,red), add(4,green) remove(4,red)",()=>
 {
-  var hashlist:HashOfLists<number,string> = new HashOfLists();
+  var hashlist:HashOfSets<number,string> = new HashOfSets();
   hashlist.add(4,'red');
   hashlist.add(4,'green');
   hashlist.remove(4,'red');
@@ -84,7 +84,7 @@ describe("hashlist add(4,red), add(4,green) remove(4,red)",()=>
 
 describe("hashlist add(4,red), add(4,green) add(5,red)",()=>
 {
-  var hashlist:HashOfLists<number,string> = new HashOfLists();
+  var hashlist:HashOfSets<number,string> = new HashOfSets();
   hashlist.add(4,'red');
   hashlist.add(4,'green');
   hashlist.add(5,'red');
@@ -108,7 +108,7 @@ describe("hashlist add(4,red), add(4,green) add(5,red)",()=>
 
 describe("hashlist add(4,red), add(4,green) add(5,red) remove(5,red)",()=>
 {
-  var hashlist:HashOfLists<number,string> = new HashOfLists();
+  var hashlist:HashOfSets<number,string> = new HashOfSets();
   hashlist.add(4,'red');
   hashlist.add(4,'green');
   hashlist.add(5,'red');
