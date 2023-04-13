@@ -1,6 +1,6 @@
 export default class Histogram<T> extends Map<T, number>
 {    
-    private sum:number;
+    private sum:number = 0;
 
     public add(t:T)
     {
