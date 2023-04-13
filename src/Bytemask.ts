@@ -25,7 +25,7 @@ export default class Bytemask
         this.view[0] = this.view[0] ^ (1 << option);
     }
 
-    has(option:number)
+    has(option:number):boolean
     {
         return ((this.view[0] >> option) & 1) == 1;
     }

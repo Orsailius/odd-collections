@@ -109,29 +109,29 @@ describe("add 3 and 5, remove 3",()=>
 describe("add 3 and 5, not 3, 2",()=>
 {
   var mask:Bytemask = new Bytemask();
-  mask.add(3);
+  mask.add(0);
   mask.add(5);
-  mask.not(3);
-  mask.not(2);
+  mask.not(0);
+  mask.not(6);
 
-  test("bitmask is 00100100", () => {
-    expect(mask.toString()).toBe("00100100");
+  test("bitmask is 00000110", () => {
+    expect(mask.toString()).toBe("00000110");
   });
 
-  test('has element 3', () => {
-      expect(mask.has(3)).toBe(false);
+  test('has element 0', () => {
+      expect(mask.has(0)).toBe(false);
     });
   
-  test('has element 0', () => {
-    expect(mask.has(0)).toBe(false);
+  test('has element 3', () => {
+    expect(mask.has(3)).toBe(false);
   });
 
   test('has element 5', () => {
     expect(mask.has(5)).toBe(true);
   });
 
-  test('has element 2', () => {
-    expect(mask.has(2)).toBe(true);
+  test('has element 6', () => {
+    expect(mask.has(6)).toBe(true);
   });
 
   test('has element 4', () => {
