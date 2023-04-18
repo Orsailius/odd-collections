@@ -2,11 +2,12 @@
 export default abstract class SuperEnum<T extends SuperEnum<T>>
 {
     name:string;
+    id?:number;
     
     toString()
     {
         return this.name;
-    }    
+    }  
 
     static create <T extends SuperEnum<T> & (new()=>SuperEnum<T>),K>(cls:T, cls2:K, name:string[])
     {
@@ -31,6 +32,7 @@ asserts obj is {new():Obj;values:Array<Subtype>} & Readonly<Record<Key, Subtype>
     {
         const instance = new obj();
         instance.name = c.toString();
+        instance.id = obj.values.length;
         obj.values.push(instance as unknown as Subtype);
         Object.defineProperty(obj, c, {
             enumerable: true,

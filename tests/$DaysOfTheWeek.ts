@@ -20,7 +20,7 @@ const values = [
     "Sunday"
 ]
 
-const DaysOfTheWeek = SuperEnum.create($DaysOfTheWeek, new $DaysOfTheWeek(), values);
+const DaysOfTheWeek = SuperEnum.create($DaysOfTheWeek , new $DaysOfTheWeek(), values);
 
 export default DaysOfTheWeek;
 

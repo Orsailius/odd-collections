@@ -290,3 +290,40 @@ describe("add 3's and 7's tests",()=>
     expect(list.getMedian() == 7);
   });
 });
+
+describe("iterator tests",()=>
+{
+  var list:MedianList<number> = MedianList.forNumbers();
+  list.add(4);
+  list.add(3);
+  list.add(3);
+  list.add(7);
+  list.add(7);
+  list.add(8);
+  list.add(7);
+  var arr:Array<number> = new Array();
+  for(var num of list)
+  {
+    arr.push(num);
+  }
+
+  test('max is 8', () => {
+    expect(list.getMax()).toBe(8);
+  });
+
+  test("arr is length 7", () => {
+    expect(arr.length).toBe(7);
+  });
+
+  test('(min) arr[0] is 3', () => {
+      expect(arr[0]).toBe(3);
+    });
+
+    test('(median) arr[3] is 7', () => {
+      expect(arr[3]).toBe(7);
+    });
+
+    test('(max) arr[6] is 8', () => {
+      expect(arr[6]).toBe(8);
+    });
+});

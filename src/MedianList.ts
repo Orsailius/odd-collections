@@ -8,7 +8,7 @@ import DoublyLinkedList from "./DoublyLinkedList";
  * O(1) find median
  * O(n) find !
  */
-export default class MedianList<T>
+export default class MedianList<T> implements Iterable<T>
 {    
     private min:T|null;
     private lowerList: DoublyLinkedList<T> = new DoublyLinkedList();
@@ -174,5 +174,152 @@ export default class MedianList<T>
                 this.lowerList.addToBack(t);
             }
         }
+    }
+
+    [Symbol.iterator](): MedianListIterator<T>
+    {
+        return new MedianListIterator(this.size, this.min, this.lowerList, this.median, this.upperList, this.max);
+    }
+}
+
+class MedianListIterator<T> implements Iterator<T>
+{
+    private stage:number = 0;
+    private listNode:any;
+   
+    constructor( 
+        private size:number,
+        private min:T|null,
+        private lowerList: DoublyLinkedList<T>,
+        private median:T | null,
+        private upperList: DoublyLinkedList<T>,
+        private max:T|null)
+        {
+
+        }
+
+    next(): IteratorResult<T, T | null>
+    {    
+        if(this.size == 1)
+        {
+            return {
+                done:true,
+                value: this.median
+            }
+        }
+        if(this.size == 2)
+        {
+            if(this.stage == 0)
+            {
+                return {
+                    done:false,
+                    value: this.min!
+                }
+            }
+            else
+            {
+                return {
+                    done:true,
+                    value: this.max
+                }
+            }
+        }
+        if(this.stage == 0)
+        {
+            if(this.min == null)
+            {
+                return {
+                    done:true,
+                    value: null
+                }
+            }
+            this.stage++;
+            return{
+                done:false,
+                value: this.min
+            };
+        }
+        if(this.stage == 1)
+        {
+            if(this.lowerList.size == 0)
+            {
+                this.stage++;
+            }
+            else
+            {
+                if(this.listNode == null)
+                {
+                    this.listNode = this.lowerList.head;
+                }
+                else
+                {
+                    this.listNode = this.listNode.next;                    
+                }
+                if(this.listNode == null)
+                {
+                    this.stage++;
+                }
+                else
+                {
+                    return{
+                        done:false,
+                        value: this.listNode.value
+                    };
+                }                
+            }
+        }
+        if(this.stage == 2)
+        {
+            this.stage++;
+            if(this.median != null)
+            {
+                return{
+                    done:false,
+                    value: this.median
+                };
+            }           
+        }
+        if(this.stage == 3)
+        {
+            if(this.upperList.size == 0)
+            {
+                this.stage++;
+            }
+            else
+            {
+                if(this.listNode == null)
+                {
+                    this.listNode = this.upperList.head;
+                }
+                else
+                {
+                    this.listNode = this.listNode.next;
+                    
+                }
+                if(this.listNode == null)
+                {
+                    this.stage++;
+                }
+                else
+                {
+                    return{
+                        done:false,
+                        value: this.listNode.value
+                    };
+                }                
+            }
+        }
+        if(this.stage == 4)
+        {
+            this.stage++;
+            return {
+                done:false,
+                value:this.max!
+            };
+        }        
+        return {
+            done:true,
+            value:null
+        };
     }
 }

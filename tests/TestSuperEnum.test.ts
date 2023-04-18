@@ -4,8 +4,8 @@ describe("creation of enum ok, can't mess with references",()=>
 {
   
   //const DaysOfTheWeek = makeMany($DaysOfTheWeek, new $DaysOfTheWeek(), ["Monday","Tuesday"]);
-  console.log("Now is " + Object.getOwnPropertyNames(DaysOfTheWeek));
-  console.log(DaysOfTheWeek.Monday);
+ // console.log("Now is " + Object.getOwnPropertyNames(DaysOfTheWeek));
+ // console.log(DaysOfTheWeek.Monday);
   DaysOfTheWeek.Monday.randomStuff = 15;
   DaysOfTheWeek.Tuesday.randomStuff = 6;
   
@@ -66,7 +66,30 @@ describe("collection tests",()=>
 
 });
 
-describe("random test",()=>
+describe("index tests",()=>
+{ 
+  console.log(DaysOfTheWeek);
+  const someDay = DaysOfTheWeek.Thursday;
+
+
+  test('Monday is 0', () => {
+      expect(DaysOfTheWeek.Monday.id).toBe(0);
+  });  
+
+  test('Wednesday is 2', () => {
+    expect(DaysOfTheWeek.Wednesday.id).toBe(2);
+  });
+
+  test('Sunday is 6', () => {
+    expect(DaysOfTheWeek.Sunday.id).toBe(6);
+  });
+
+  test('Our id of Thursday indexes Thursday in values', () => {
+    expect(DaysOfTheWeek.values[someDay.id!]).toBe(DaysOfTheWeek.Thursday);
+  });
+});
+
+/*describe("random test",()=>
 { 
   console.log(DaysOfTheWeek.getRandom());
   console.log(DaysOfTheWeek.getRandom());
@@ -75,4 +98,4 @@ describe("random test",()=>
   console.log(DaysOfTheWeek.getRandom());
   console.log(DaysOfTheWeek.getRandom()); 
 
-});
+});*/
